@@ -1,10 +1,21 @@
-<body>
-  <div class="login-container">
-    <h2>Login</h2>
-    <input type="email" id="email" placeholder="Seu e-mail">
-    <input type="password" id="senha" placeholder="Sua senha">
-    <button onclick="login()">Entrar</button>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-  <script src="js/auth.js"></script>
-</body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Consultoria Alimentar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-cover bg-center flex items-center justify-center"
+      style="background-image: url('https://media.istockphoto.com/id/1457433817/pt/foto/group-of-healthy-food-for-flexitarian-diet.jpg?s=612x612&w=0&k=20&c=gtYkwgspeAjAIUoSIPOeci2o02IrWwPLJY0Ql5jhiKQ=');">
+
+  <div class="w-full max-w-sm bg-white bg-opacity-90 rounded-2xl shadow-xl p-6">
+    <div class="text-center mb-6">
+      <h1 class="text-2xl font-bold text-gray-800">Consultoria Alimentar</h1>
+      <p class="text-sm text-gray-600">Acesse sua conta</p>
+    </div>
+
+    <form id="login-form" class="space-y-5">
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">E-mail</label>
+        <input type="email" id="email" name="email" requ
