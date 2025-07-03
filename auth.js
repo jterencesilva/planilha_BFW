@@ -25,7 +25,7 @@ async function login(event) {
     alert("Erro ao logar: " + error.message);
   } else {
     // redireciona após login bem-sucedido
-    window.location.href = "dashboard.html";
+    window.location.href = "index_botao.html";
   }
 }
 
