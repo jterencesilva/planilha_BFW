@@ -11,6 +11,6 @@ Projeto HTML simples com autenticação via Supabase.
 
 ## 📁 Estrutura
 - `index.html`: Tela de login
-- `dashboard.html`: Área protegida
+- `dashboard.html`: RELATÓRIO DE VERIFICAÇÃO DAS BOAS PRÁTICAS
 - `js/auth.js`: Código JS com Supabase
 - `css/estilo.css`: Estilo básico
