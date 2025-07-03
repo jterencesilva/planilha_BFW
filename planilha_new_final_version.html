@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RELATÓRIO DE VISITA TÉCNICA – CONTROLE DE QUALIDADE E SEGURANÇA DOS ALIMENTOS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        /* Cor verde escuro para títulos e bordas */
+        h1, h2, h3 {
+            color: #006400; /* Verde escuro */
+            border-bottom: 2px solid #006400; /* Verde escuro */
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-size: 20px;
+        }
+        h3 {
+            font-size: 18px;
+            border-bottom: 1px solid #eee;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .question {
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 3px solid #f0f0f0;
+        }
+        .question label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .question input[type="text"],
+        .question textarea {
+            width: calc(100% - 22px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .question textarea {
+            min-height: 60px;
+            resize: vertical;
+        }
+        .question .options input[type="radio"] {
+            margin-right: 5px;
+        }
+        .question .options label {
+            display: inline-block;
+            margin-right: 15px;
+            font-weight: normal;
+        }
+        .info-field {
+            margin-bottom: 10px;
+        }
+        .info-field label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .info-field input[type="text"] {
+            border: none;
+            border-bottom: 1px solid #ccc;
+            padding: 2px 0;
+            width: 200px;
+            font-size: 14px;
+        }
+        .signature-area {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+        .signature-area div {
+            margin-bottom: 30px;
+        }
+        .signature-area input[type="text"] {
+            width: 300px;
+            border: none;
+            border-bottom: 1px solid #333;
+            text-align: center;
+            padding: 5px 0;
+            font-size: 16px;
+        }
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .score-table th, .score-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .score-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        .action-button {
+            background-color: #006400; /* Verde escuro */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+            display: block; /* Para centralizar o botão */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .action-button:hover {
+            background-color: #004d00; /* Verde mais escuro no hover */
+        }
+        .inconformidade-item {
+            border: 1px solid #eee;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+        .chart-and-scores-container {
+            display: flex;
+            justify-content: space-between; /* Espaço entre o gráfico e as notas */
+            align-items: flex-start;
+            margin-top: 20px;
+            flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas menores */
+            gap: 20px; /* Espaço entre os itens */
+            border: 1px solid #ddd; /* Adicionado borda para delimitar a área */
+            padding: 15px;
+            background-color: #fcfcfc;
+            border-radius: 8px;
+        }
+        .chart-wrapper {
+            flex: 1; /* Permite que o gráfico ocupe o espaço disponível */
+            min-width: 300px; /* Largura mínima para o gráfico */
+            max-width: 48%; /* Limite superior para o gráfico, ajustado para caber 2 itens */
+            padding-right: 10px; /* Espaçamento entre os itens */
+        }
+        .scores-wrapper {
+            flex: 1; /* Permite que as notas ocupem o espaço disponível */
+            min-width: 300px; /* Largura mínima para as notas */
+            max-width: 48%; /* Limite superior para as notas, ajustado para caber 2 itens */
+            padding-left: 10px; /* Espaçamento entre os itens */
+        }
+        .legend-container {
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #eee;
+            background-color: #f9f9f9;
+            margin-bottom: 15px;
+        }
+        .legend-item {
+            margin-bottom: 5px;
+        }
+        .legend-item strong {
+            display: inline-block;
+            width: 100px;
+        }
+        #notas_por_topico_display p {
+            margin: 5px 0;
+            padding: 3px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        #notas_por_topico_display p:last-child {
+            border-bottom: none;
+        }
+
+        /* Estilos para impressão */
+        @media print {
+            .action-button {
+                display: none; /* Esconde os botões na impressão */
+            }
+            .question textarea,
+            .info-field input[type="text"],
+            .signature-area input[type="text"] {
+                border: 1px solid #ccc; /* Adiciona borda para campos de texto na impressão */
+                padding: 5px;
+            }
+            .info-field input[readonly],
+            #notas_por_topico_display {
+                background-color: #f9f9f9;
+                padding: 5px;
+                border: 1px solid #ddd;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>RELATÓRIO DE VISITA TÉCNICA – CONTROLE DE QUALIDADE E SEGURANÇA DOS ALIMENTOS</h1>
+
+        <div class="section">
+            <h2>Informações Gerais</h2>
+            <div class="info-field">
+                <label for="data">Data:</label>
+                <input type="text" id="data" name="data" placeholder="DD/MM/AAAA">
+            </div>
+            <div class="info-field">
+                <label for="restaurante">Restaurante:</label>
+                <input type="text" id="restaurante" name="restaurante" value="">
+            </div>
+            <div class="info-field">
+                <label for="unidade">Unidade:</label>
+                <input type="text" id="unidade" name="unidade" value="">
+            </div>
+            <div class="info-field">
+                <label for="nutricionista_responsavel_info">Nutricionista Responsável:</label>
+                <input type="text" id="nutricionista_responsavel_info" name="nutricionista_responsavel_info" value="">
+            </div>
+            <div class="info-field">
+                <label for="acompanhante_visita">Acompanhante da Visita:</label>
+                <input type="text" id="acompanhante_visita" name="acompanhante_visita" value="">
+            </div>
+            <div class="info-field">
+                <label for="cargo_acompanhante">Cargo do Acompanhante:</label>
+                <input type="text" id="cargo_acompanhante" name="cargo_acompanhante" value="">
+            </div>
+            <div class="info-field">
+                <label for="pontuacao_geral">Pontuação Geral Consolidada:</label>
+                <input type="text" id="pontuacao_geral" name="pontuacao_geral" placeholder="Ex: 93.7% (Excelente)" readonly>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 30px;">
+            <button onclick="calcularPontuacao()" class="action-button">Calcular Notas e Gerar Gráfico</button>
+        </div>
+
+        <div class="chart-and-scores-container">
+            <div class="chart-wrapper">
+                <h3>Distribuição Geral das Respostas</h3>
+                <canvas id="pontuacaoChart" class="chart-canvas"></canvas>
+            </div>
+            <div class="scores-wrapper">
+                <h3>Critérios de Avaliação e Notas por Tópico</h3>
+                <div class="legend-container">
+                    <h4>Critérios:</h4>
+                    <div class="legend-item"><strong>Excelente:</strong> 95% - 100%</div>
+                    <div class="legend-item"><strong>Muito Bom:</strong> 85% - 94.9%</div>
+                    <div class="legend-item"><strong>Bom:</strong> 75% - 84.9%</div>
+                    <div class="legend-item"><strong>Razoável:</strong> 60% - 74.9%</div>
+                    <div class="legend-item"><strong>Ruim:</strong> 40% - 59.9%</div>
+                    <div class="legend-item"><strong>Crítico:</strong> 0% - 39.9%</div>
+                </div>
+                <div id="notas_por_topico_display">
+                    <p style="text-align: center; color: #666;">Clique em "Calcular Notas e Gerar Gráfico" para ver as pontuações.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>1. Cozinha Central</h2>
+            <div class="question">
+                <label>1.1 Uso adequado de uniformes e EPIs:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_central_uniformes" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_central_uniformes" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_central_uniformes" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_central_uniformes_comentario">Comentário:</label>
+                <textarea id="cozinha_central_uniformes_comentario" name="cozinha_central_uniformes_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>1.2 Boas práticas de manipulação observadas:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_central_boas_praticas" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_central_boas_praticas" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_central_boas_praticas" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_central_boas_praticas_comentario">Comentário:</label>
+                <textarea id="cozinha_central_boas_praticas_comentario" name="cozinha_central_boas_praticas_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>1.3 Limpeza, organização e armazenamento:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_central_limpeza" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_central_limpeza" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_central_limpeza" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_central_limpeza_comentario">Comentário:</label>
+                <textarea id="cozinha_central_limpeza_comentario" name="cozinha_central_limpeza_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>1.4 Higienização FVL:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_central_higienizacao_fvl" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_central_higienizacao_fvl" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_central_higienizacao_fvl" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_central_higienizacao_fvl_comentario">Comentário:</label>
+                <textarea id="cozinha_central_higienizacao_fvl_comentario" name="cozinha_central_higienizacao_fvl_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>1.5 Aplicação de PVPS:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_central_pvps" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_central_pvps" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_central_pvps" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_central_pvps_comentario">Comentário:</label>
+                <textarea id="cozinha_central_pvps_comentario" name="cozinha_central_pvps_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>1.6 Validades e identificação de itens manipulados:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_central_validade" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_central_validade" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_central_validade" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_central_validade_comentario">Comentário:</label>
+                <textarea id="cozinha_central_validade_comentario" name="cozinha_central_validade_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>1.7 Controle de pragas:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_central_pragas" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_central_pragas" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_central_pragas" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_central_pragas_comentario">Comentário:</label>
+                <textarea id="cozinha_central_pragas_comentario" name="cozinha_central_pragas_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>1.8 Percepção de incompatibilidade:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_central_incompatibilidade" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_central_incompatibilidade" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_central_incompatibilidade" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_central_incompatibilidade_comentario">Comentário:</label>
+                <textarea id="cozinha_central_incompatibilidade_comentario" name="cozinha_central_incompatibilidade_comentario"></textarea>
+            </div>
+            <div class="info-field">
+                <label for="nota_cozinha_central">Nota Cozinha Central:</label>
+                <input type="text" id="nota_cozinha_central" readonly>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Cozinha de Produção</h2>
+            <div class="question">
+                <label>2.1 Uso adequado de uniformes e EPIs:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_producao_uniformes" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_uniformes" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_uniformes" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_producao_uniformes_comentario">Comentário:</label>
+                <textarea id="cozinha_producao_uniformes_comentario" name="cozinha_producao_uniformes_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>2.2 Boas práticas de manipulação observadas:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_producao_boas_praticas" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_boas_praticas" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_boas_praticas" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_producao_boas_praticas_comentario">Comentário:</label>
+                <textarea id="cozinha_producao_boas_praticas_comentario" name="cozinha_producao_boas_praticas_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>2.3 Limpeza, organização e armazenamento:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_producao_limpeza" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_limpeza" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_limpeza" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_producao_limpeza_comentario">Comentário:</label>
+                <textarea id="cozinha_producao_limpeza_comentario" name="cozinha_producao_limpeza_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>2.4 Higienização FVL:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_producao_higienizacao_fvl" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_higienizacao_fvl" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_higienizacao_fvl" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_producao_higienizacao_fvl_comentario">Comentário:</label>
+                <textarea id="cozinha_producao_higienizacao_fvl_comentario" name="cozinha_producao_higienizacao_fvl_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>2.5 Aplicação de PVPS:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_producao_pvps" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_pvps" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_pvps" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_producao_pvps_comentario">Comentário:</label>
+                <textarea id="cozinha_producao_pvps_comentario" name="cozinha_producao_pvps_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>2.6 Validades e identificação de itens manipulados:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_producao_validade" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_validade" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_validade" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_producao_validade_comentario">Comentário:</label>
+                <textarea id="cozinha_producao_validade_comentario" name="cozinha_producao_validade_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>2.7 Controle de pragas:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_producao_pragas" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_pragas" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_pragas" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_producao_pragas_comentario">Comentário:</label>
+                <textarea id="cozinha_producao_pragas_comentario" name="cozinha_producao_pragas_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>2.8 Percepção de incompatibilidade:</label>
+                <div class="options">
+                    <label><input type="radio" name="cozinha_producao_incompatibilidade" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_incompatibilidade" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="cozinha_producao_incompatibilidade" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="cozinha_producao_incompatibilidade_comentario">Comentário:</label>
+                <textarea id="cozinha_producao_incompatibilidade_comentario" name="cozinha_producao_incompatibilidade_comentario"></textarea>
+            </div>
+            <div class="info-field">
+                <label for="nota_cozinha_producao">Nota Cozinha de Produção:</label>
+                <input type="text" id="nota_cozinha_producao" readonly>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Garde Manger</h2>
+            <div class="question">
+                <label>3.1 Uso adequado de uniformes e EPIs:</label>
+                <div class="options">
+                    <label><input type="radio" name="garde_manger_uniformes" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="garde_manger_uniformes" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="garde_manger_uniformes" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="garde_manger_uniformes_comentario">Comentário:</label>
+                <textarea id="garde_manger_uniformes_comentario" name="garde_manger_uniformes_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>3.2 Boas práticas de manipulação observadas:</label>
+                <div class="options">
+                    <label><input type="radio" name="garde_manger_boas_praticas" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="garde_manger_boas_praticas" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="garde_manger_boas_praticas" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="garde_manger_boas_praticas_comentario">Comentário:</label>
+                <textarea id="garde_manger_boas_praticas_comentario" name="garde_manger_boas_praticas_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>3.3 Limpeza, organização e armazenamento:</label>
+                <div class="options">
+                    <label><input type="radio" name="garde_manger_limpeza" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="garde_manger_limpeza" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="garde_manger_limpeza" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="garde_manger_limpeza_comentario">Comentário:</label>
+                <textarea id="garde_manger_limpeza_comentario" name="garde_manger_limpeza_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>3.4 Higienização FVL:</label>
+                <div class="options">
+                    <label><input type="radio" name="garde_manger_higienizacao_fvl" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="garde_manger_higienizacao_fvl" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="garde_manger_higienizacao_fvl" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="garde_manger_higienizacao_fvl_comentario">Comentário:</label>
+                <textarea id="garde_manger_higienizacao_fvl_comentario" name="garde_manger_higienizacao_fvl_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>3.5 Aplicação de PVPS:</label>
+                <div class="options">
+                    <label><input type="radio" name="garde_manger_pvps" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="garde_manger_pvps" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="garde_manger_pvps" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="garde_manger_pvps_comentario">Comentário:</label>
+                <textarea id="garde_manger_pvps_comentario" name="garde_manger_pvps_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>3.6 Validades e identificação de itens manipulados:</label>
+                <div class="options">
+                    <label><input type="radio" name="garde_manger_validade" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="garde_manger_validade" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="garde_manger_validade" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="garde_manger_validade_comentario">Comentário:</label>
+                <textarea id="garde_manger_validade_comentario" name="garde_manger_validade_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>3.7 Controle de pragas:</label>
+                <div class="options">
+                    <label><input type="radio" name="garde_manger_pragas" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="garde_manger_pragas" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="garde_manger_pragas" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="garde_manger_pragas_comentario">Comentário:</label>
+                <textarea id="garde_manger_pragas_comentario" name="garde_manger_pragas_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>3.8 Percepção de incompatibilidade:</label>
+                <div class="options">
+                    <label><input type="radio" name="garde_manger_incompatibilidade" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="garde_manger_incompatibilidade" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="garde_manger_incompatibilidade" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="garde_manger_incompatibilidade_comentario">Comentário:</label>
+                <textarea id="garde_manger_incompatibilidade_comentario" name="garde_manger_incompatibilidade_comentario"></textarea>
+            </div>
+            <div class="info-field">
+                <label for="nota_garde_manger">Nota Garde Manger:</label>
+                <input type="text" id="nota_garde_manger" readonly>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. Bar</h2>
+            <div class="question">
+                <label>4.1 Uso adequado de uniformes e EPIs:</label>
+                <div class="options">
+                    <label><input type="radio" name="bar_uniformes" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="bar_uniformes" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="bar_uniformes" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="bar_uniformes_comentario">Comentário:</label>
+                <textarea id="bar_uniformes_comentario" name="bar_uniformes_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>4.2 Boas práticas de manipulação observadas:</label>
+                <div class="options">
+                    <label><input type="radio" name="bar_boas_praticas" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="bar_boas_praticas" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="bar_boas_praticas" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="bar_boas_praticas_comentario">Comentário:</label>
+                <textarea id="bar_boas_praticas_comentario" name="bar_boas_praticas_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>4.3 Limpeza, organização e armazenamento:</label>
+                <div class="options">
+                    <label><input type="radio" name="bar_limpeza" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="bar_limpeza" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="bar_limpeza" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="bar_limpeza_comentario">Comentário:</label>
+                <textarea id="bar_limpeza_comentario" name="bar_limpeza_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>4.4 Higienização FVL:</label>
+                <div class="options">
+                    <label><input type="radio" name="bar_higienizacao_fvl" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="bar_higienizacao_fvl" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="bar_higienizacao_fvl" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="bar_higienizacao_fvl_comentario">Comentário:</label>
+                <textarea id="bar_higienizacao_fvl_comentario" name="bar_higienizacao_fvl_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>4.5 Aplicação de PVPS:</label>
+                <div class="options">
+                    <label><input type="radio" name="bar_pvps" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="bar_pvps" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="bar_pvps" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="bar_pvps_comentario">Comentário:</label>
+                <textarea id="bar_pvps_comentario" name="bar_pvps_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>4.6 Validades e identificação de itens manipulados:</label>
+                <div class="options">
+                    <label><input type="radio" name="bar_validade" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="bar_validade" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="bar_validade" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="bar_validade_comentario">Comentário:</label>
+                <textarea id="bar_validade_comentario" name="bar_validade_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>4.7 Controle de pragas:</label>
+                <div class="options">
+                    <label><input type="radio" name="bar_pragas" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="bar_pragas" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="bar_pragas" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="bar_pragas_comentario">Comentário:</label>
+                <textarea id="bar_pragas_comentario" name="bar_pragas_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>4.8 Percepção de incompatibilidade:</label>
+                <div class="options">
+                    <label><input type="radio" name="bar_incompatibilidade" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="bar_incompatibilidade" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="bar_incompatibilidade" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="bar_incompatibilidade_comentario">Comentário:</label>
+                <textarea id="bar_incompatibilidade_comentario" name="bar_incompatibilidade_comentario"></textarea>
+            </div>
+            <div class="info-field">
+                <label for="nota_bar">Nota Bar:</label>
+                <input type="text" id="nota_bar" readonly>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. Câmaras</h2>
+            <div class="question">
+                <label>5.1 Organização e Armazenamento:</label>
+                <div class="options">
+                    <label><input type="radio" name="camaras_organizacao" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="camaras_organizacao" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="camaras_organizacao" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="camaras_organizacao_comentario">Comentário:</label>
+                <textarea id="camaras_organizacao_comentario" name="camaras_organizacao_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>5.2 Higienização:</label>
+                <div class="options">
+                    <label><input type="radio" name="camaras_higienizacao" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="camaras_higienizacao" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="camaras_higienizacao" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="camaras_higienizacao_comentario">Comentário:</label>
+                <textarea id="camaras_higienizacao_comentario" name="camaras_higienizacao_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>5.3 Aplicação do PVPS:</label>
+                <div class="options">
+                    <label><input type="radio" name="camaras_pvps" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="camaras_pvps" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="camaras_pvps" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="camaras_pvps_comentario">Comentário:</label>
+                <textarea id="camaras_pvps_comentario" name="camaras_pvps_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>5.4 Identificação de Produtos para Troca/Impróprios:</label>
+                <div class="options">
+                    <label><input type="radio" name="camaras_ident_improprios" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="camaras_ident_improprios" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="camaras_ident_improprios" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="camaras_ident_improprios_comentario">Comentário:</label>
+                <textarea id="camaras_ident_improprios_comentario" name="camaras_ident_improprios_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>5.5 Datas de Validade:</label>
+                <div class="options">
+                    <label><input type="radio" name="camaras_datas_validade" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="camaras_datas_validade" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="camaras_datas_validade" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="camaras_datas_validade_comentario">Comentário:</label>
+                <textarea id="camaras_datas_validade_comentario" name="camaras_datas_validade_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>5.6 Estrutura Física:</label>
+                <div class="options">
+                    <label><input type="radio" name="camaras_estrutura_fisica" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="camaras_estrutura_fisica" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="camaras_estrutura_fisica" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="camaras_estrutura_fisica_comentario">Comentário:</label>
+                <textarea id="camaras_estrutura_fisica_comentario" name="camaras_estrutura_fisica_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>5.7 Controle de Pragas:</label>
+                <div class="options">
+                    <label><input type="radio" name="camaras_controle_pragas" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="camaras_controle_pragas" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="camaras_controle_pragas" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="camaras_controle_pragas_comentario">Comentário:</label>
+                <textarea id="camaras_controle_pragas_comentario" name="camaras_controle_pragas_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>5.8 Temperaturas dos Produtos:</label>
+                <div class="options">
+                    <label><input type="radio" name="camaras_temperaturas_produtos" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="camaras_temperaturas_produtos" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="camaras_temperaturas_produtos" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="camaras_temperaturas_produtos_comentario">Comentário:</label>
+                <textarea id="camaras_temperaturas_produtos_comentario" name="camaras_temperaturas_produtos_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>5.9 Percepção de Inconformidade com o Ambiente:</label>
+                <div class="options">
+                    <label><input type="radio" name="camaras_inconformidade_ambiente" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="camaras_inconformidade_ambiente" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="camaras_inconformidade_ambiente" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="camaras_inconformidade_ambiente_comentario">Comentário:</label>
+                <textarea id="camaras_inconformidade_ambiente_comentario" name="camaras_inconformidade_ambiente_comentario"></textarea>
+            </div>
+            <div class="info-field">
+                <label for="nota_camaras">Nota Câmaras:</label>
+                <input type="text" id="nota_camaras" readonly>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>6. Estoque Seco</h2>
+            <div class="question">
+                <label>6.1 Organização e Armazenamento:</label>
+                <div class="options">
+                    <label><input type="radio" name="estoque_seco_organizacao" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="estoque_seco_organizacao" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="estoque_seco_organizacao" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="estoque_seco_organizacao_comentario">Comentário:</label>
+                <textarea id="estoque_seco_organizacao_comentario" name="estoque_seco_organizacao_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>6.2 Higienização:</label>
+                <div class="options">
+                    <label><input type="radio" name="estoque_seco_higienizacao" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="estoque_seco_higienizacao" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="estoque_seco_higienizacao" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="estoque_seco_higienizacao_comentario">Comentário:</label>
+                <textarea id="estoque_seco_higienizacao_comentario" name="estoque_seco_higienizacao_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>6.3 Aplicação do PVPS:</label>
+                <div class="options">
+                    <label><input type="radio" name="estoque_seco_pvps" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="estoque_seco_pvps" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="estoque_seco_pvps" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="estoque_seco_pvps_comentario">Comentário:</label>
+                <textarea id="estoque_seco_pvps_comentario" name="estoque_seco_pvps_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>6.4 Identificação de Produtos para Troca/Impróprios:</label>
+                <div class="options">
+                    <label><input type="radio" name="estoque_seco_ident_improprios" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="estoque_seco_ident_improprios" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="estoque_seco_ident_improprios" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="estoque_seco_ident_improprios_comentario">Comentário:</label>
+                <textarea id="estoque_seco_ident_improprios_comentario" name="estoque_seco_ident_improprios_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>6.5 Datas de Validade:</label>
+                <div class="options">
+                    <label><input type="radio" name="estoque_seco_datas_validade" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="estoque_seco_datas_validade" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="estoque_seco_datas_validade" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="estoque_seco_datas_validade_comentario">Comentário:</label>
+                <textarea id="estoque_seco_datas_validade_comentario" name="estoque_seco_datas_validade_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>6.6 Estrutura Física:</label>
+                <div class="options">
+                    <label><input type="radio" name="estoque_seco_estrutura_fisica" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="estoque_seco_estrutura_fisica" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="estoque_seco_estrutura_fisica" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="estoque_seco_estrutura_fisica_comentario">Comentário:</label>
+                <textarea id="estoque_seco_estrutura_fisica_comentario" name="estoque_seco_estrutura_fisica_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>6.7 Controle de Pragas:</label>
+                <div class="options">
+                    <label><input type="radio" name="estoque_seco_controle_pragas" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="estoque_seco_controle_pragas" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="estoque_seco_controle_pragas" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="estoque_seco_controle_pragas_comentario">Comentário:</label>
+                <textarea id="estoque_seco_controle_pragas_comentario" name="estoque_seco_controle_pragas_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>6.8 Percepção de Inconformidade com o Ambiente:</label>
+                <div class="options">
+                    <label><input type="radio" name="estoque_seco_inconformidade_ambiente" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="estoque_seco_inconformidade_ambiente" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="estoque_seco_inconformidade_ambiente" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="estoque_seco_inconformidade_ambiente_comentario">Comentário:</label>
+                <textarea id="estoque_seco_inconformidade_ambiente_comentario" name="estoque_seco_inconformidade_ambiente_comentario"></textarea>
+            </div>
+            <div class="info-field">
+                <label for="nota_estoque_seco">Nota Estoque Seco:</label>
+                <input type="text" id="nota_estoque_seco" readonly>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>7. Salão</h2>
+            <div class="question">
+                <label>7.1 Higienização de mesas e pisos:</label>
+                <div class="options">
+                    <label><input type="radio" name="salao_higienizacao" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="salao_higienizacao" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="salao_higienizacao" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="salao_higienizacao_comentario">Comentário:</label>
+                <textarea id="salao_higienizacao_comentario" name="salao_higienizacao_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>7.2 Há alimentos/insumos com boa aparência, dentro da validade e sem risco de contaminação cruzada:</label>
+                <div class="options">
+                    <label><input type="radio" name="salao_alimentos_insumos" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="salao_alimentos_insumos" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="salao_alimentos_insumos" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="salao_alimentos_insumos_comentario">Comentário:</label>
+                <textarea id="salao_alimentos_insumos_comentario" name="salao_alimentos_insumos_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>7.3 As informações obrigatórias estão expostas de forma clara e acessível ao cliente (ex: indicação de glúten e alergênicos, nome e preço dos itens, descrição básica dos pratos, taxa de serviço 10%, cardápio físico acessível, identificação de opções veganas/vegetarianas quando houver, e aviso “Se beber, não dirija” quando houver bebidas alcoólicas):</label>
+                <div class="options">
+                    <label><input type="radio" name="salao_informacoes_obrigatorias" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="salao_informacoes_obrigatorias" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="salao_informacoes_obrigatorias" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="salao_informacoes_obrigatorias_comentario">Comentário:</label>
+                <textarea id="salao_informacoes_obrigatorias_comentario" name="salao_informacoes_obrigatorias_comentario"></textarea>
+            </div>
+            <div class="info-field">
+                <label for="nota_salao">Nota Salão:</label>
+                <input type="text" id="nota_salao" readonly>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>8. Área de Louças / Lixo</h2>
+            <div class="question">
+                <label>8.1 Panelas, utensílios e louças estão limpos e emborcados:</label>
+                <div class="options">
+                    <label><input type="radio" name="loucas_lixo_limpeza_utensilios" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_limpeza_utensilios" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_limpeza_utensilios" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="loucas_lixo_limpeza_utensilios_comentario">Comentário:</label>
+                <textarea id="loucas_lixo_limpeza_utensilios_comentario" name="loucas_lixo_limpeza_utensilios_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>8.2 O sabão/detergente utilizado é adequado e está devidamente diluído:</label>
+                <div class="options">
+                    <label><input type="radio" name="loucas_lixo_sabao_adequado" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_sabao_adequado" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_sabao_adequado" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="loucas_lixo_sabao_adequado_comentario">Comentário:</label>
+                <textarea id="loucas_lixo_sabao_adequado_comentario" name="loucas_lixo_sabao_adequado_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>8.3 A pia de lavagem está limpa e sem acúmulo de resíduos:</label>
+                <div class="options">
+                    <label><input type="radio" name="loucas_lixo_pia_limpa" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_pia_limpa" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_pia_limpa" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="loucas_lixo_pia_limpa_comentario">Comentário:</label>
+                <textarea id="loucas_lixo_pia_limpa_comentario" name="loucas_lixo_pia_limpa_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>8.4 A sequência de lavagem está sendo seguida corretamente (remoção de resíduos → ensaboamento → enxágue → sanitização → secagem):</label>
+                <div class="options">
+                    <label><input type="radio" name="loucas_lixo_sequencia_lavagem" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_sequencia_lavagem" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_sequencia_lavagem" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="loucas_lixo_sequencia_lavagem_comentario">Comentário:</label>
+                <textarea id="loucas_lixo_sequencia_lavagem_comentario" name="loucas_lixo_sequencia_lavagem_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>8.5 As tábuas de corte estão higienizadas e sem danos (riscos profundos ou rachaduras)</label>
+                <div class="options">
+                    <label><input type="radio" name="loucas_lixo_tabuas_corte" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_tabuas_corte" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_tabuas_corte" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="loucas_lixo_tabuas_corte_comentario">Comentário:</label>
+                <textarea id="loucas_lixo_tabuas_corte_comentario" name="loucas_lixo_tabuas_corte_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>8.6 Há panos de prato ou de limpeza sujos sendo utilizados na área</label>
+                <div class="options">
+                    <label><input type="radio" name="loucas_lixo_panos_sujos" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_panos_sujos" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_panos_sujos" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="loucas_lixo_panos_sujos_comentario">Comentário:</label>
+                <textarea id="loucas_lixo_panos_sujos_comentario" name="loucas_lixo_panos_sujos_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>8.7 Higienização de lixeiras e entorno:</label>
+                <div class="options">
+                    <label><input type="radio" name="loucas_lixo_higienizacao" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_higienizacao" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_higienizacao" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="loucas_lixo_higienizacao_comentario">Comentário:</label>
+                <textarea id="loucas_lixo_higienizacao_comentario" name="loucas_lixo_higienizacao_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>8.8 Armazenamento temporário de resíduos orgânicos:</label>
+                <div class="options">
+                    <label><input type="radio" name="loucas_lixo_armazenamento" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_armazenamento" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="loucas_lixo_armazenamento" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="loucas_lixo_armazenamento_comentario">Comentário:</label>
+                <textarea id="loucas_lixo_armazenamento_comentario" name="loucas_lixo_armazenamento_comentario"></textarea>
+            </div>
+            <div class="info-field">
+                <label for="nota_loucas_lixo">Nota Louças / Lixo:</label>
+                <input type="text" id="nota_loucas_lixo" readonly>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>9. Sanitários / Vestiário de Funcionários</h2>
+            <div class="question">
+                <label>9.1 Estrutura Física - Separação por Sexo:</label>
+                <div class="options">
+                    <label><input type="radio" name="sanitario_separacao_sexo" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="sanitario_separacao_sexo" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="sanitario_separacao_sexo" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="sanitario_separacao_sexo_comentario">Comentário:</label>
+                <textarea id="sanitario_separacao_sexo_comentario" name="sanitario_separacao_sexo_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>9.2 Higienização do Ambiente:</label>
+                <div class="options">
+                    <label><input type="radio" name="sanitario_hig_ambiente" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="sanitario_hig_ambiente" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="sanitario_hig_ambiente" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="sanitario_hig_ambiente_comentario">Comentário:</label>
+                <textarea id="sanitario_hig_ambiente_comentario" name="sanitario_hig_ambiente_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>9.3 Organização do Ambiente:</label>
+                <div class="options">
+                    <label><input type="radio" name="sanitario_organizacao_ambiente" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="sanitario_organizacao_ambiente" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="sanitario_organizacao_ambiente" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="sanitario_organizacao_ambiente_comentario">Comentário:</label>
+                <textarea id="sanitario_organizacao_ambiente_comentario" name="sanitario_organizacao_ambiente_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>9.4 Estrutura Física - Conservação e Funcionamento:</label>
+                <div class="options">
+                    <label><input type="radio" name="sanitario_estrutura_conservacao" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="sanitario_estrutura_conservacao" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="sanitario_estrutura_conservacao" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="sanitario_estrutura_conservacao_comentario">Comentário:</label>
+                <textarea id="sanitario_estrutura_conservacao_comentario" name="sanitario_estrutura_conservacao_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>9.5 Disponibilidade de Insumos:</label>
+                <div class="options">
+                    <label><input type="radio" name="sanitario_disponibilidade_insumos" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="sanitario_disponibilidade_insumos" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="sanitario_disponibilidade_insumos" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="sanitario_disponibilidade_insumos_comentario">Comentário:</label>
+                <textarea id="sanitario_disponibilidade_insumos_comentario" name="sanitario_disponibilidade_insumos_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>9.6 Estrutura Física - Ralos:</label>
+                <div class="options">
+                    <label><input type="radio" name="sanitario_ralos" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="sanitario_ralos" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="sanitario_ralos" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="sanitario_ralos_comentario">Comentário:</label>
+                <textarea id="sanitario_ralos_comentario" name="sanitario_ralos_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>9.7 Higienização de Lixeiras:</label>
+                <div class="options">
+                    <label><input type="radio" name="sanitario_hig_lixeiras" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="sanitario_hig_lixeiras" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="sanitario_hig_lixeiras" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="sanitario_hig_lixeiras_comentario">Comentário:</label>
+                <textarea id="sanitario_hig_lixeiras_comentario" name="sanitario_hig_lixeiras_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>9.8 Outras Inconformidades:</label>
+                <div class="options">
+                    <label><input type="radio" name="sanitario_outras_inconformidades" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="sanitario_outras_inconformidades" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="sanitario_outras_inconformidades" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="sanitario_outras_inconformidades_comentario">Comentário:</label>
+                <textarea id="sanitario_outras_inconformidades_comentario" name="sanitario_outras_inconformidades_comentario"></textarea>
+            </div>
+            <div class="info-field">
+                <label for="nota_sanitarios">Nota Sanitários / Vestiário:</label>
+                <input type="text" id="nota_sanitarios" readonly>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>10. Buffet</h2>
+            <div class="question">
+                <label>10.1 Higienização e organização da área de exposição:</label>
+                <div class="options">
+                    <label><input type="radio" name="buffet_higienizacao_exposicao" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="buffet_higienizacao_exposicao" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="buffet_higienizacao_exposicao" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="buffet_higienizacao_exposicao_comentario">Comentário:</label>
+                <textarea id="buffet_higienizacao_exposicao_comentario" name="buffet_higienizacao_exposicao_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>10.2 Os alimentos estão em temperatura segura (quente >60ºC, frio <5ºC):</label>
+                <div class="options">
+                    <label><input type="radio" name="buffet_temperatura_segura" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="buffet_temperatura_segura" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="buffet_temperatura_segura" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="buffet_temperatura_segura_comentario">Comentário:</label>
+                <textarea id="buffet_temperatura_segura_comentario" name="buffet_temperatura_segura_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>10.3 Os alimentos expostos estão protegidos (ex: com tampa, protetor salivar, barreiras físicas):</label>
+                <div class="options">
+                    <label><input type="radio" name="buffet_protecao" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="buffet_protecao" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="buffet_protecao" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="buffet_protecao_comentario">Comentário:</label>
+                <textarea id="buffet_protecao_comentario" name="buffet_protecao_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>10.4 Os utensílios de serviço (pegadores, colheres) estão limpos e disponíveis corretamente:</label>
+                <div class="options">
+                    <label><input type="radio" name="buffet_utensilios" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="buffet_utensilios" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="buffet_utensilios" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="buffet_utensilios_comentario">Comentário:</label>
+                <textarea id="buffet_utensilios_comentario" name="buffet_utensilios_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>10.5 Há controle de tempo e temperatura dos alimentos expostos no buffet:</label>
+                <div class="options">
+                    <label><input type="radio" name="buffet_controle_tt" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="buffet_controle_tt" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="buffet_controle_tt" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="buffet_controle_tt_comentario">Comentário:</label>
+                <textarea id="buffet_controle_tt_comentario" name="buffet_controle_tt_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>10.6 Os alimentos estão com boa aparência, dentro da validade e sem contaminação cruzada visível:</label>
+                <div class="options">
+                    <label><input type="radio" name="buffet_qualidade" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="buffet_qualidade" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="buffet_qualidade" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="buffet_qualidade_comentario">Comentário:</label>
+                <textarea id="buffet_qualidade_comentario" name="buffet_qualidade_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>10.7 Existe lavatório com papel toalha e sabonete próximo ao buffet:</label>
+                <div class="options">
+                    <label><input type="radio" name="buffet_lavatorio" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="buffet_lavatorio" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="buffet_lavatorio" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="buffet_lavatorio_comentario">Comentário:</label>
+                <textarea id="buffet_lavatorio_comentario" name="buffet_lavatorio_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>10.8 A coleta de amostras é feita para todas as preparações servidas no buffet diariamente:</label>
+                <div class="options">
+                    <label><input type="radio" name="buffet_coleta_amostras" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="buffet_coleta_amostras" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="buffet_coleta_amostras" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="buffet_coleta_amostras_comentario">Comentário:</label>
+                <textarea id="buffet_coleta_amostras_comentario" name="buffet_coleta_amostras_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>10.9 As amostras são mantidas sob refrigeração ≤ 5°C por 72h, com identificação completa:</label>
+                <div class="options">
+                    <label><input type="radio" name="buffet_conservacao_amostras" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="buffet_conservacao_amostras" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="buffet_conservacao_amostras" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="buffet_conservacao_amostras_comentario">Comentário:</label>
+                <textarea id="buffet_conservacao_amostras_comentario" name="buffet_conservacao_amostras_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>10.10 Há registro diário de coleta e pesagem de no mínimo 100g dos alimentos:</label>
+                <div class="options">
+                    <label><input type="radio" name="buffet_registro_amostras" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="buffet_registro_amostras" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="buffet_registro_amostras" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="buffet_registro_amostras_comentario">Comentário:</label>
+                <textarea id="buffet_registro_amostras_comentario" name="buffet_registro_amostras_comentario"></textarea>
+            </div>
+            <div class="info-field">
+                <label for="nota_buffet">Nota Buffet:</label>
+                <input type="text" id="nota_buffet" readonly>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>11. Grab'n Go</h2>
+            <div class="question">
+                <label>11.1 Validade e identificação dos produtos:</label>
+                <div class="options">
+                    <label><input type="radio" name="grab_n_go_validade" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="grab_n_go_validade" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="grab_n_go_validade" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="grab_n_go_validade_comentario">Comentário:</label>
+                <textarea id="grab_n_go_validade_comentario" name="grab_n_go_validade_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>11.2 Temperatura de conservação dos produtos refrigerados/aquecidos:</label>
+                <div class="options">
+                    <label><input type="radio" name="grab_n_go_temperatura" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="grab_n_go_temperatura" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="grab_n_go_temperatura" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="grab_n_go_temperatura_comentario">Comentário:</label>
+                <textarea id="grab_n_go_temperatura_comentario" name="grab_n_go_temperatura_comentario"></textarea>
+            </div>
+            <div class="question">
+                <label>11.3 Higienização das gôndolas e expositores:</label>
+                <div class="options">
+                    <label><input type="radio" name="grab_n_go_higienizacao" value="Conforme"> Conforme</label>
+                    <label><input type="radio" name="grab_n_go_higienizacao" value="Nao Conforme"> Não Conforme</label>
+                    <label><input type="radio" name="grab_n_go_higienizacao" value="Nao Aplicavel"> Não Aplicável</label>
+                </div>
+                <label for="grab_n_go_higienizacao_comentario">Comentário:</label>
+                <textarea id="grab_n_go_higienizacao_comentario" name="grab_n_go_higienizacao_comentario"></textarea>
+            </div>
+            <div class="info-field">
+                <label for="nota_grab_n_go">Nota Grab'n Go:</label>
+                <input type="text" id="nota_grab_n_go" readonly>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>12. Comentários Gerais e Observações</h2>
+            <div class="question">
+                <label for="comentarios_gerais">Comentários:</label>
+                <textarea id="comentarios_gerais" name="comentarios_gerais"></textarea>
+            </div>
+        </div>
+
+        <div class="signature-area">
+            <div>
+                <label>Acompanhante da Visita:</label><br>
+                <input type="text" name="acompanhante_visita_assinatura">
+            </div>
+            <div>
+                <label>Nutricionista Responsável:</label><br>
+                <input type="text" name="nutricionista_responsavel_assinatura">
+            </div>
+            <div class="info-field">
+                <label for="data_assinatura">Data:</label>
+                <input type="text" id="data_assinatura" name="data_assinatura" placeholder="DD/MM/AAAA">
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button onclick="window.print()" class="action-button">Imprimir Relatório</button>
+        </div>
+
+<script>
+let myChart; // Variável global para armazenar a instância do Chart
+
+// Função auxiliar para calcular a nota de um grupo de perguntas
+function calcularNotaGrupo(groupNames) {
+    let conforme = 0;
+    let naoConforme = 0;
+    let naoAplicavel = 0;
+    let perguntasRespondidas = 0; // Conta todas as perguntas que tiveram alguma opção selecionada
+
+    groupNames.forEach(name => {
+        const radios = document.querySelectorAll(`input[name="${name}"][type="radio"]`);
+        let respostaEncontrada = false;
+        radios.forEach(radio => {
+            if (radio.checked) {
+                respostaEncontrada = true;
+                if (radio.value === "Conforme") conforme++;
+                else if (radio.value === "Nao Conforme") naoConforme++;
+                else if (radio.value === "Nao Aplicavel") naoAplicavel++;
+            }
+        });
+        if (respostaEncontrada) {
+             perguntasRespondidas++; // Incrementa se qualquer resposta foi dada para esta pergunta
+        }
+    });
+
+    const totalConformeOuNaoConforme = conforme + naoConforme;
+    let nota = 0;
+    if (totalConformeOuNaoConforme > 0) {
+        nota = (conforme / totalConformeOuNaoConforme) * 100;
+    }
+
+    return { nota, conforme, naoConforme, naoAplicavel, perguntasRespondidas };
+}
+
+// Função para obter a classificação
+function getClassificacao(nota) {
+    if (nota < 40) return "Crítico";
+    else if (nota < 60) return "Ruim";
+    else if (nota < 75) return "Razoável";
+    else if (nota < 85) return "Bom";
+    else if (nota < 95) return "Muito Bom";
+    else return "Excelente";
+}
+
+
+function calcularPontuacao() {
+    const gruposDePerguntas = {
+        "Cozinha Central": [
+            "cozinha_central_uniformes", "cozinha_central_boas_praticas",
+            "cozinha_central_limpeza", "cozinha_central_higienizacao_fvl",
+            "cozinha_central_pvps", "cozinha_central_validade",
+            "cozinha_central_pragas", "cozinha_central_incompatibilidade"
+        ],
+        "Cozinha de Produção": [
+            "cozinha_producao_uniformes", "cozinha_producao_boas_praticas",
+            "cozinha_producao_limpeza", "cozinha_producao_higienizacao_fvl",
+            "cozinha_producao_pvps", "cozinha_producao_validade",
+            "cozinha_producao_pragas", "cozinha_producao_incompatibilidade"
+        ],
+        "Garde Manger": [
+            "garde_manger_uniformes", "garde_manger_boas_praticas",
+            "garde_manger_limpeza", "garde_manger_higienizacao_fvl",
+            "garde_manger_pvps", "garde_manger_validade",
+            "garde_manger_pragas", "garde_manger_incompatibilidade"
+        ],
+        "Bar": [
+            "bar_uniformes", "bar_boas_praticas", "bar_limpeza",
+            "bar_higienizacao_fvl", "bar_pvps", "bar_validade",
+            "bar_pragas", "bar_incompatibilidade"
+        ],
+        "Câmaras": [
+            "camaras_organizacao", "camaras_higienizacao", "camaras_pvps",
+            "camaras_ident_improprios", "camaras_datas_validade",
+            "camaras_estrutura_fisica", "camaras_controle_pragas",
+            "camaras_temperaturas_produtos", "camaras_inconformidade_ambiente"
+        ],
+        "Estoque Seco": [
+            "estoque_seco_organizacao", "estoque_seco_higienizacao", "estoque_seco_pvps",
+            "estoque_seco_ident_improprios", "estoque_seco_datas_validade",
+            "estoque_seco_estrutura_fisica", "estoque_seco_controle_pragas",
+            "estoque_seco_inconformidade_ambiente"
+        ],
+        "Salão": [
+            "salao_higienizacao", "salao_alimentos_insumos",
+            "salao_informacoes_obrigatorias"
+        ],
+        "Louças / Lixo": [
+            "loucas_lixo_limpeza_utensilios", "loucas_lixo_sabao_adequado",
+            "loucas_lixo_pia_limpa", "loucas_lixo_sequencia_lavagem",
+            "loucas_lixo_tabuas_corte", "loucas_lixo_panos_sujos",
+            "loucas_lixo_higienizacao", "loucas_lixo_armazenamento"
+        ],
+        "Sanitários / Vestiário": [
+            "sanitario_separacao_sexo", "sanitario_hig_ambiente",
+            "sanitario_organizacao_ambiente", "sanitario_estrutura_conservacao",
+            "sanitario_disponibilidade_insumos", "sanitario_ralos",
+            "sanitario_hig_lixeiras", "sanitario_outras_inconformidades"
+        ],
+        "Buffet": [
+            "buffet_higienizacao_exposicao", "buffet_temperatura_segura",
+            "buffet_protecao", "buffet_utensilios", "buffet_controle_tt",
+            "buffet_qualidade", "buffet_lavatorio", "buffet_coleta_amostras",
+            "buffet_conservacao_amostras", "buffet_registro_amostras"
+        ],
+        "Grab'n Go": [
+            "grab_n_go_validade", "grab_n_go_temperatura",
+            "grab_n_go_higienizacao"
+        ]
+    };
+
+    let totalConformeGeral = 0;
+    let totalNaoConformeGeral = 0;
+    let totalNaoAplicavelGeral = 0;
+    let totalNotasValidas = 0;
+    let somaDasNotas = 0;
+
+    const notasPorTopicoDisplay = document.getElementById("notas_por_topico_display");
+    notasPorTopicoDisplay.innerHTML = '<h4>Notas por Tópico:</h4>'; // Limpa e adiciona título
+
+    for (const topico in gruposDePerguntas) {
+        const groupNames = gruposDePerguntas[topico];
+        const resultadoGrupo = calcularNotaGrupo(groupNames);
+
+        // Atualiza os totais gerais para o gráfico (considera todas as respostas, inclusive Nao Aplicavel)
+        totalConformeGeral += resultadoGrupo.conforme;
+        totalNaoConformeGeral += resultadoGrupo.naoConforme;
+        totalNaoAplicavelGeral += resultadoGrupo.naoAplicavel;
+
+        // Gerar ID do campo nota: "nota_" + nome_do_topico_em_minusculas_e_com_underline
+        const idCampoNota = `nota_${topico.toLowerCase().replace(/ /g, '_').replace(/\//g, '')}`;
+        const campoNota = document.getElementById(idCampoNota);
+
+        let notaFormatada = "N/A"; // Valor padrão para tópicos não respondidos ou apenas com Nao Aplicavel
+        let classificacaoTopico = "";
+
+        // Apenas calcula a nota numérica e a classificação se houver respostas "Conforme" ou "Não Conforme"
+        if (resultadoGrupo.conforme + resultadoGrupo.naoConforme > 0) {
+            notaFormatada = `${resultadoGrupo.nota.toFixed(1)}%`;
+            classificacaoTopico = ` (${getClassificacao(resultadoGrupo.nota)})`;
+            somaDasNotas += resultadoGrupo.nota;
+            totalNotasValidas++;
+        }
+
+        // Exibe a nota no campo de texto e na lista de notas por tópico
+        if (campoNota) {
+            campoNota.value = `${notaFormatada}${classificacaoTopico}`;
+        } else {
+            console.warn(`Campo de nota para "${topico}" não encontrado (ID esperado: ${idCampoNota}).`);
+        }
+        // Adiciona o tópico à lista de notas, mesmo que seja N/A
+        notasPorTopicoDisplay.innerHTML += `<p><strong>${topico}:</strong> ${notaFormatada}${classificacaoTopico}</p>`;
+    }
+
+    // Calcular e exibir a nota consolidada
+    let notaConsolidada = 0;
+    let classificacaoConsolidada = "";
+
+    if (totalNotasValidas > 0) {
+        notaConsolidada = somaDasNotas / totalNotasValidas;
+        classificacaoConsolidada = getClassificacao(notaConsolidada);
+    } else {
+        classificacaoConsolidada = "Sem Avaliação";
+    }
+
+    const campoPontuacaoGeral = document.getElementById("pontuacao_geral");
+    if (campoPontuacaoGeral) {
+        campoPontuacaoGeral.value = `${notaConsolidada.toFixed(1)}% (${classificacaoConsolidada})`;
+    }
+
+
+    // Preparar dados para o gráfico de pizza geral
+    const ctx = document.getElementById('pontuacaoChart').getContext('2d');
+    if (myChart) {
+        myChart.destroy(); // Destruir gráfico anterior se existir
+    }
+
+    // Para o gráfico, usamos a contagem geral de "Conforme", "Não Conforme" e "Não Aplicável"
+    // para dar uma visão global da proporção de cada tipo de resposta.
+    // É importante que o total inclua *todas* as respostas, mesmo as "Não Aplicável",
+    // para que a proporção no gráfico seja visualmente correta.
+    const totalTodasRespostasParaGrafico = totalConformeGeral + totalNaoConformeGeral + totalNaoAplicavelGeral;
+
+    const dataForChart = {
+        labels: ['Conforme', 'Não Conforme', 'Não Aplicável'],
+        datasets: [{
+            data: [totalConformeGeral, totalNaoConformeGeral, totalNaoAplicavelGeral],
+            backgroundColor: [
+                '#4CAF50', // Verde para Conforme
+                '#FF6347', // Vermelho para Não Conforme
+                '#FFD700'  // Amarelo para Não Aplicável
+            ],
+            hoverOffset: 4
+        }]
+    };
+
+    myChart = new Chart(ctx, {
+        type: 'pie',
+        data: dataForChart,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Distribuição Geral das Respostas (Todos os Tópicos)'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed !== null) {
+                                // Usar totalTodasRespostasParaGrafico para calcular a porcentagem no tooltip
+                                label += context.parsed + ' (' + ((context.parsed / totalTodasRespostasParaGrafico) * 100).toFixed(1) + '%)';
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        },
+    });
+}
+</script>
+
+</body>
+</html>
